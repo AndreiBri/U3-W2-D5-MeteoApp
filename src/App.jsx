@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -7,6 +8,7 @@ import MyNavbar from "./components/MyNavbar";
 import Welcome from "./components/Welcome";
 import SearchBar from "./components/SearchBar";
 import WeatherPanel from "./components/WeatherPanel";
+import Previsioni from "./components/Previsioni";
 import Footer from "./components/Footer";
 
 function App() {
@@ -48,26 +50,30 @@ function App() {
       <MyNavbar />
 
       <main className="flex-grow-1 bg-dark text-light">
-        <Welcome className="text-center my-5" />
-
-        <div className="container-fluid">
-          <div className="row">
-            {/* LEFT */}
-            <div className="col-md-3">
-              <SearchBar onSearch={fetchWeatherByCity} />
-            </div>
-
-            {/* CENTER */}
-            <div className="col-md-6">
-              <AllWorldMap position={position} weather={weather} onMapClick={fetchWeatherByCoords} />
-            </div>
-
-            {/* RIGHT */}
-            <div className="col-md-3">
-              <WeatherPanel weather={weather} />
-            </div>
-          </div>
-        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Welcome className="text-center my-5" />
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <SearchBar onSearch={fetchWeatherByCity} />
+                    </div>
+                    <div className="col-md-6">
+                      <AllWorldMap position={position} weather={weather} onMapClick={fetchWeatherByCoords} />
+                    </div>
+                    <div className="col-md-3">
+                      <WeatherPanel weather={weather} />
+                    </div>
+                  </div>
+                </div>
+              </>
+            }
+          />
+          <Route path="/previsioni" element={<Previsioni />} />
+        </Routes>
       </main>
 
       <Footer className="text-center py-2" />

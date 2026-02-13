@@ -1,5 +1,5 @@
 import "./MyNavbar.css";
-
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -11,16 +11,20 @@ function MyNavbar() {
   return (
     <Navbar expand="lg" className="py-0">
       <Container fluid>
-        <Navbar.Brand href="#" className="d-flex align-items-center ">
+        <Link to="/" className="navbar-brand d-flex align-items-center ">
           <img src={logo} alt="MeteoLogo" />
           <p className="mb-0 ms-2">EpiMeteo</p>
-        </Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Previsioni</Nav.Link>
-            <Nav.Link href="#action2">Situazionei</Nav.Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            <Link to="/previsioni" className="nav-link">
+              Previsioni
+            </Link>
+            <Nav.Link href="#action2">Situazioni</Nav.Link>
             <Nav.Link href="#action2">Venti e Mari</Nav.Link>
           </Nav>
           <Form className="d-flex ">
